@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.php', './dashboard.php', './koneksi.php'], 
+  content: ['./index.php', './dashboard.php', './register.php'], 
   theme: {
     extend: {  
       borderWidth: {
