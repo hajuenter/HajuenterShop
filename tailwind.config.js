@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.php', './dashboard.php', './register.php'], 
+  darkMode: 'class',
+  content: ['./index.php', './dashboard.php', './register.php', './lupaPassword.php'], 
   theme: {
     extend: {  
       borderWidth: {
