@@ -9,9 +9,9 @@
 </head>
 
 <body>
-  <div class="font-[sans-serif] text-[#333] bg-slate-700 flex items-center md:h-screen p-4">
+  <div class="font-[sans-serif] text-[#333] bg-white flex items-center md:h-screen p-4">
     <div class="w-full max-w-4xl mx-auto">
-      <div class="bg-gradient-to-r from-slate-900 to-slate-700 grid md:grid-cols-2 lg:gap-24 gap-2 w-full sm:p-8 p-6 rounded overflow-hidden border-3 border-white">
+      <div class="bg-gradient-to-r rounded-2xl from-slate-900 to-slate-700 grid md:grid-cols-2 lg:gap-24 gap-2 w-full sm:p-8 p-6 overflow-hidden border-3 border-white">
         <div class="max-md:order-1 space-y-6">
           <div class="grayscale hover:grayscale-0 flex lg:items-center lg:justify-center">
             <img src="./img/logo14-removebg-preview.png" alt="mylogo" width="280px" class="flex">
@@ -104,35 +104,40 @@
     </div>
   </div>
   <?php
-  // Mengambil file koneksi.php untuk menyambungkan ke database
-  include 'koneksi.php';
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btnregister'])) {
+// Mengambil file koneksi.php untuk menyambungkan ke database
+include 'koneksi.php';
+session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btnregister'])) {
     // mengecek apakah check box di centang atau tidak
     if (!isset($_POST['remember-me'])) {
-      echo "<p class='text-red-500 text-center'>You must accept the Terms and Conditions to register.</p>";
+        echo "<script>alert('Harap setujui persyaratan untuk register');</script>";
     } else {
-      // Retrieve and sanitize form data
-      $name = mysqli_real_escape_string($conn, $_POST['name']);
-      $email = mysqli_real_escape_string($conn, $_POST['email']);
-      $password = mysqli_real_escape_string($conn, $_POST['password']);
+        // Retrieve and sanitize form data
+        $txtname = mysqli_real_escape_string($conn, $_POST['name']);
+        $txtemail = mysqli_real_escape_string($conn, $_POST['email']);
+        $txtpassword = mysqli_real_escape_string($conn, $_POST['password']);
 
-      // membuat variabel yang isinya mengubah variabel password ke dalam md5
-      $hashed_password = md5($password);
+        // Hashing password menggunakan password_hash()
+        $hashed_password = password_hash($txtpassword, PASSWORD_DEFAULT);
 
-      // Menyiapkan SQL query
-      $sql = "INSERT INTO user (nama, email, password) VALUES ('$name', '$email', '$hashed_password')";
+        // Menyiapkan SQL query menggunakan prepared statement
+        $stmt = mysqli_prepare($conn, "INSERT INTO user (nama, email, password) VALUES (?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, "sss", $txtname, $txtemail, $hashed_password);
 
-      // Eksekusi query
-      if (mysqli_query($conn, $sql)) {
-        echo "<p class='text-green-500 text-center'>New record created successfully</p>";
-      } else {
-        echo "<p class='text-red-500 text-center'>Error: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
-      }
+        // Eksekusi query
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<script>alert('Register sukses');</script>";
+        } else {
+            echo "<script>alert('Register gagal');</script>" . mysqli_error($conn);
+        }
+
+        mysqli_stmt_close($stmt);
     }
-  }
-  // Close the database connection
-  mysqli_close($conn);
-  ?>
-</body>
+}
 
+// Close the database connection
+mysqli_close($conn);
+?>
+
+</body>
 </html>

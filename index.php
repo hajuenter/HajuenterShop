@@ -1,6 +1,43 @@
 <?php
+include 'koneksi.php';
 session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btnlogin'])) {
+    // Validasi checkbox "remember-me"
+    if (!isset($_POST['remember-me'])) {
+        echo "<script>alert('Harap setujui persyaratan untuk login');</script>";
+    } else {
+        $txtemail = $_POST['txtemail'];
+        $txtpassword = $_POST['txtpassword'];
+
+        // Enkripsi password menggunakan password_hash()
+        $hashed_password = password_hash($txtpassword, PASSWORD_DEFAULT);
+
+        // Prepared statement untuk query
+        $stmt = mysqli_prepare($conn, "SELECT * FROM user WHERE email = ?");
+        mysqli_stmt_bind_param($stmt, "s", $txtemail);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            // Verifikasi password menggunakan password_verify()
+            if (password_verify($txtpassword, $row['password'])) {
+                echo "<script>alert('Login sukses');</script>";
+                // Lakukan sesuatu setelah login berhasil, misalnya set session
+                session_start();
+                $_SESSION['user_id'] = $row['id']; // Simpan ID pengguna ke session
+                header("Location: dashboard.php"); // Redirect ke halaman dashboard
+                exit();
+            } else {
+                echo "<script>alert('Login gagal');</script>";
+            }
+        } else {
+            echo "<script>alert('Login gagal: Email tidak ditemukan');</script>";
+        }
+        mysqli_stmt_close($stmt);
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +47,13 @@ session_start();
     <link rel="stylesheet" href="./css/output.css">
 </head>
 <body>
-<div class="bg-indigo-400 font-[sans-serif]">
+<div class="bg-white font-[sans-serif]">
       <div class="min-h-screen flex flex-col items-center justify-center py-2 px-4">
         <div class="max-w-md w-full">
           <img src="./img/logo14-removebg-preview.png" alt="logo" class="w-40 mb-0 mx-auto block"/>  
           <div class="p-8 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700 border-3 border-white">
-            <h2 class="text-indigo-500 text-center text-2xl font-bold">Sign in</h2>
-            <form name="formlogin" class="mt-8 space-y-4">
+            <h2 class="text-indigo-500 text-center text-2xl font-bold">Login</h2>
+            <form method="post" class="mt-8 space-y-4">
               <div>
                 <label class="text-neutral-400 text-sm mb-2 block">Email</label>
                 <div class="relative flex items-center">
@@ -61,21 +98,5 @@ session_start();
         </div>
       </div>
     </div>
-
-<!-- <div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-  </svg>
-  <span class="sr-only">Info</span>
-  <div class="ms-3 text-sm font-medium">
-    A simple info alert with an <a href="#" class="font-semibold underline hover:no-underline">example link</a>. Give it a click if you like.
-  </div>
-  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
-    <span class="sr-only">Close</span>
-    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-    </svg>
-  </button>
-</div> -->
 </body>
 </html>
