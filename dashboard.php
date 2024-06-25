@@ -17,25 +17,26 @@ session_start();
     <meta name="keywords" content="keywords,here">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
     <!--Replace with your tailwind.css once created-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+    <!-- <style>
+        * {
+            border: 1px solid black;
+        }
+    </style> -->
 </head>
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
-
     <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
-
-
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
             <div class="w-1/2 pl-2 md:pl-0">
-                <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
-                    <i class="pr-3"></i> Hajuenter Shop 
-                </a>
-            </div>  
+                <span class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold">
+                    <i class="pr-3"></i> Hajuenter Shop
+                </span>
+            </div>
             <div class="w-1/2 pr-0">
                 <div class="flex relative float-right">
-
                     <div class="relative text-sm">
                         <button id="userButton" class="flex items-center focus:outline-none mr-3">
                             <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User"> <span class="hidden md:inline-block">Hi, Bahrul </span>
@@ -45,18 +46,19 @@ session_start();
                                 </g>
                             </svg>
                         </button>
-                        <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                        <!-- profil -->
+                        <div id="userMenu" class="bg-white rounded shadow-md mt-9 absolute top-0 right-3 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
                                 <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
                                 <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Notifications</a></li>
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
-                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+                                <li><a href="index.php" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
                             </ul>
                         </div>
+                        <!-- profil end -->
                     </div>
-
 
                     <div class="block lg:hidden pr-4">
                         <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-teal-500 appearance-none focus:outline-none">
@@ -67,40 +69,40 @@ session_start();
                         </button>
                     </div>
                 </div>
-
             </div>
-
-
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white z-20" id="nav-content">
+                <!-- list menu -->
                 <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-pink-600 no-underline hover:text-gray-900 border-b-2 border-orange-600 hover:border-orange-600">
-                            <i class="fas fa-home fa-fw mr-3 text-pink-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
+                        <a href="#" class="block py-1 md:py-3 pl-3 align-middle text-gray-500 no-underline hover:text-blue-600 border-b-2 border-white hover:border-blue-600">
+                            <i class="fas fa-home fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-pink-500">
+                        <a href="#" class="block py-1 md:py-3 pl-3 align-middle text-gray-500 no-underline hover:text-pink-500 border-b-2 border-white hover:border-pink-500">
                             <i class="fas fa-tasks fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Tasks</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-purple-500">
+                        <a href="#" class="block py-1 md:py-3 pl-3 align-middle text-gray-500 no-underline hover:text-purple-500 border-b-2 border-white hover:border-purple-500">
                             <i class="fa fa-envelope fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Messages</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-green-500">
+                        <a href="#" class="block py-1 md:py-3 pl-3 align-middle text-gray-500 no-underline hover:text-green-500 border-b-2 border-white hover:border-green-500">
                             <i class="fas fa-chart-area fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Analytics</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
+                        <a href="#" class="block py-1 md:py-3 pl-3 align-middle text-gray-500 no-underline hover:text-red-500 border-b-2 border-white hover:border-red-500">
                             <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Payments</span>
                         </a>
                     </li>
                 </ul>
+                <!-- list menu end-->
 
-                <div class="relative pull-right pl-4 pr-4 md:pr-0">
+                <!-- search -->
+                <div class="relative pull-right pl-4 pr-4 md:pr-96">
                     <input type="search" placeholder="Search" class="w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-10 appearance-none leading-normal">
                     <div class="absolute search-icon" style="top: 0.375rem;left: 1.75rem;">
                         <svg class="fill-current pointer-events-none text-gray-800 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -108,21 +110,18 @@ session_start();
                         </svg>
                     </div>
                 </div>
+                <!-- search end -->
 
             </div>
-
         </div>
     </nav>
 
     <!--Container-->
     <div class="container w-full mx-auto pt-20">
-
         <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-
             <!--Console Content-->
-
             <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Metric Card-->
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
@@ -137,7 +136,7 @@ session_start();
                     </div>
                     <!--/Metric Card-->
                 </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Metric Card-->
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
@@ -152,7 +151,7 @@ session_start();
                     </div>
                     <!--/Metric Card-->
                 </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Metric Card-->
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
@@ -167,7 +166,7 @@ session_start();
                     </div>
                     <!--/Metric Card-->
                 </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Metric Card-->
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
@@ -182,7 +181,7 @@ session_start();
                     </div>
                     <!--/Metric Card-->
                 </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Metric Card-->
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
@@ -197,7 +196,7 @@ session_start();
                     </div>
                     <!--/Metric Card-->
                 </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Metric Card-->
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
@@ -215,146 +214,146 @@ session_start();
             </div>
 
             <!--Divider-->
-            <hr class="border-b-2 border-gray-400 my-8 mx-4">
+            <hr class="border-b-2 border-gray-400 my-2 mx-4">
 
             <div class="flex flex-row flex-wrap flex-grow mt-2">
 
-                <div class="w-full md:w-1/2 p-3">
+                <div class="w-full md:w-1/3 p-3">
                     <!--Graph Card-->
                     <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        <div class="border-b p-0">
+                            <h5 class="font-bold uppercase text-gray-600 text-center">Hajuenter Shop Diagram</h5>
                         </div>
-                        <div class="p-5">
+                        <div class="p-0">
                             <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
                             <script>
-                            new Chart(document.getElementById("chartjs-7"), {
-                                "type": "bar",
-                                "data": {
-                                    "labels": ["January", "February", "March", "April"],
-                                    "datasets": [{
-                                        "label": "Page Impressions",
-                                        "data": [10, 20, 30, 40],
-                                        "borderColor": "rgb(255, 99, 132)",
-                                        "backgroundColor": "rgba(255, 99, 132, 0.2)"
-                                    }, {
-                                        "label": "Adsense Clicks",
-                                        "data": [5, 15, 10, 30],
-                                        "type": "line",
-                                        "fill": false,
-                                        "borderColor": "rgb(54, 162, 235)"
-                                    }]
-                                },
-                                "options": {
-                                    "scales": {
-                                        "yAxes": [{
-                                            "ticks": {
-                                                "beginAtZero": true
-                                            }
+                                new Chart(document.getElementById("chartjs-7"), {
+                                    "type": "bar",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April"],
+                                        "datasets": [{
+                                            "label": "Page Impressions",
+                                            "data": [10, 20, 30, 40],
+                                            "borderColor": "rgb(255, 99, 132)",
+                                            "backgroundColor": "rgba(255, 99, 132, 0.2)"
+                                        }, {
+                                            "label": "Adsense Clicks",
+                                            "data": [5, 15, 10, 30],
+                                            "type": "line",
+                                            "fill": false,
+                                            "borderColor": "rgb(54, 162, 235)"
                                         }]
+                                    },
+                                    "options": {
+                                        "scales": {
+                                            "yAxes": [{
+                                                "ticks": {
+                                                    "beginAtZero": true
+                                                }
+                                            }]
+                                        }
                                     }
-                                }
-                            });
+                                });
                             </script>
                         </div>
                     </div>
                     <!--/Graph Card-->
                 </div>
 
-                <div class="w-full md:w-1/2 p-3">
+                <div class="w-full md:w-1/3 p-3">
                     <!--Graph Card-->
                     <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        <div class="border-b p-0">
+                            <h5 class="font-bold uppercase text-gray-600 text-center">Hajuenter Diagram Garis</h5>
                         </div>
-                        <div class="p-5">
+                        <div class="p-0">
                             <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
                             <script>
-                            new Chart(document.getElementById("chartjs-0"), {
-                                "type": "line",
-                                "data": {
-                                    "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                    "datasets": [{
-                                        "label": "Views",
-                                        "data": [65, 59, 80, 81, 56, 55, 40],
-                                        "fill": false,
-                                        "borderColor": "rgb(75, 192, 192)",
-                                        "lineTension": 0.1
-                                    }]
-                                },
-                                "options": {}
-                            });
+                                new Chart(document.getElementById("chartjs-0"), {
+                                    "type": "line",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                        "datasets": [{
+                                            "label": "Views",
+                                            "data": [65, 59, 80, 81, 56, 55, 40],
+                                            "fill": false,
+                                            "borderColor": "rgb(75, 192, 192)",
+                                            "lineTension": 0.1
+                                        }]
+                                    },
+                                    "options": {}
+                                });
                             </script>
                         </div>
                     </div>
                     <!--/Graph Card-->
                 </div>
 
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Graph Card-->
                     <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        <div class="border-b p-0">
+                            <h5 class="font-bold uppercase text-gray-600 text-center">Hajuenter Diagram Batang</h5>
                         </div>
-                        <div class="p-5">
+                        <div class="p-0">
                             <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
                             <script>
-                            new Chart(document.getElementById("chartjs-1"), {
-                                "type": "bar",
-                                "data": {
-                                    "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                    "datasets": [{
-                                        "label": "Likes",
-                                        "data": [65, 59, 80, 81, 56, 55, 40],
-                                        "fill": false,
-                                        "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                                        "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
-                                        "borderWidth": 1
-                                    }]
-                                },
-                                "options": {
-                                    "scales": {
-                                        "yAxes": [{
-                                            "ticks": {
-                                                "beginAtZero": true
-                                            }
+                                new Chart(document.getElementById("chartjs-1"), {
+                                    "type": "bar",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                        "datasets": [{
+                                            "label": "Likes",
+                                            "data": [65, 59, 80, 81, 56, 55, 40],
+                                            "fill": false,
+                                            "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                                            "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                                            "borderWidth": 1
                                         }]
+                                    },
+                                    "options": {
+                                        "scales": {
+                                            "yAxes": [{
+                                                "ticks": {
+                                                    "beginAtZero": true
+                                                }
+                                            }]
+                                        }
                                     }
-                                }
-                            });
+                                });
                             </script>
                         </div>
                     </div>
                     <!--/Graph Card-->
                 </div>
 
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <!--Graph Card-->
                     <div class="bg-white border rounded shadow">
-                        <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        <div class="border-b p-0">
+                            <h5 class="font-bold uppercase text-gray-600 text-center">Hajuenter Diagram Lingkaran</h5>
                         </div>
-                        <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
+                        <div class="p-0"><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
                             <script>
-                            new Chart(document.getElementById("chartjs-4"), {
-                                "type": "doughnut",
-                                "data": {
-                                    "labels": ["P1", "P2", "P3"],
-                                    "datasets": [{
-                                        "label": "Issues",
-                                        "data": [300, 50, 100],
-                                        "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-                                    }]
-                                }
-                            });
+                                new Chart(document.getElementById("chartjs-4"), {
+                                    "type": "doughnut",
+                                    "data": {
+                                        "labels": ["P1", "P2", "P3"],
+                                        "datasets": [{
+                                            "label": "Issues",
+                                            "data": [300, 50, 100],
+                                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                        }]
+                                    }
+                                });
                             </script>
                         </div>
                     </div>
                     <!--/Graph Card-->
                 </div>
 
-                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-                    <!--Template Card-->
+                <!--Template Card-->
+                <!-- <div class="w-full md:w-1/3 xl:w-1/3 p-3">
                     <div class="bg-white border rounded shadow">
                         <div class="border-b p-3">
                             <h5 class="font-bold uppercase text-gray-600">Template</h5>
@@ -363,11 +362,11 @@ session_start();
 
                         </div>
                     </div>
-                    <!--/Template Card-->
-                </div>
+                </div> -->
+                <!--/Template Card-->
 
-                <div class="w-full p-3">
-                    <!--Table Card-->
+                <!--Table Card-->
+                <!-- <div class="w-full p-3">
                     <div class="bg-white border rounded shadow">
                         <div class="border-b p-3">
                             <h5 class="font-bold uppercase text-gray-600">Table</h5>
@@ -405,9 +404,8 @@ session_start();
 
                         </div>
                     </div>
-                    <!--/table Card-->
-                </div>
-
+                </div> -->
+                <!--/table Card end-->
 
             </div>
 
@@ -417,62 +415,67 @@ session_start();
 
 
     </div>
-    <!--/container-->
+    <!--container end-->
     <script>
-    /*Toggle dropdown list*/
-    /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+        /*Toggle dropdown list*/
+        /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
 
-    var userMenuDiv = document.getElementById("userMenu");
-    var userMenu = document.getElementById("userButton");
+        var userMenuDiv = document.getElementById("userMenu");
+        var userMenu = document.getElementById("userButton");
 
-    var navMenuDiv = document.getElementById("nav-content");
-    var navMenu = document.getElementById("nav-toggle");
+        var navMenuDiv = document.getElementById("nav-content");
+        var navMenu = document.getElementById("nav-toggle");
 
-    document.onclick = check;
+        document.onclick = check;
 
-    function check(e) {
-        var target = (e && e.target) || (event && event.srcElement);
+        function check(e) {
+            var target = (e && e.target) || (event && event.srcElement);
 
-        //User Menu
-        if (!checkParent(target, userMenuDiv)) {
-            // click NOT on the menu
-            if (checkParent(target, userMenu)) {
-                // click on the link
-                if (userMenuDiv.classList.contains("invisible")) {
-                    userMenuDiv.classList.remove("invisible");
-                } else { userMenuDiv.classList.add("invisible"); }
-            } else {
-                // click both outside link and outside menu, hide menu
-                userMenuDiv.classList.add("invisible");
+            //User Menu
+            if (!checkParent(target, userMenuDiv)) {
+                // click NOT on the menu
+                if (checkParent(target, userMenu)) {
+                    // click on the link
+                    if (userMenuDiv.classList.contains("invisible")) {
+                        userMenuDiv.classList.remove("invisible");
+                    } else {
+                        userMenuDiv.classList.add("invisible");
+                    }
+                } else {
+                    // click both outside link and outside menu, hide menu
+                    userMenuDiv.classList.add("invisible");
+                }
             }
-        }
 
-        //Nav Menu
-        if (!checkParent(target, navMenuDiv)) {
-            // click NOT on the menu
-            if (checkParent(target, navMenu)) {
-                // click on the link
-                if (navMenuDiv.classList.contains("hidden")) {
-                    navMenuDiv.classList.remove("hidden");
-                } else { navMenuDiv.classList.add("hidden"); }
-            } else {
-                // click both outside link and outside menu, hide menu
-                navMenuDiv.classList.add("hidden");
+            //Nav Menu
+            if (!checkParent(target, navMenuDiv)) {
+                // click NOT on the menu
+                if (checkParent(target, navMenu)) {
+                    // click on the link
+                    if (navMenuDiv.classList.contains("hidden")) {
+                        navMenuDiv.classList.remove("hidden");
+                    } else {
+                        navMenuDiv.classList.add("hidden");
+                    }
+                } else {
+                    // click both outside link and outside menu, hide menu
+                    navMenuDiv.classList.add("hidden");
+                }
             }
+
         }
 
-    }
-
-    function checkParent(t, elm) {
-        while (t.parentNode) {
-            if (t == elm) { return true; }
-            t = t.parentNode;
+        function checkParent(t, elm) {
+            while (t.parentNode) {
+                if (t == elm) {
+                    return true;
+                }
+                t = t.parentNode;
+            }
+            return false;
         }
-        return false;
-    }
     </script>
 
 </body>
 
 </html>
-
